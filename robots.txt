@@ -1,0 +1,8 @@
+# robots.txt for PeakWebmaster
+
+# Allow all search engines to crawl all content
+User-agent: *
+Disallow: 
+
+# Sitemap location
+Sitemap: https://www.peakwebmaster.com/sitemap.xml

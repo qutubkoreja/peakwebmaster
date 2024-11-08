@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Use our free Sitemap Creator Tool to generate an XML sitemap for your website. Improve SEO and indexing by submitting your sitemap to search engines.">
+    <meta name="keywords" content="XML sitemap, sitemap creator, website sitemap, SEO sitemap, improve SEO, generate sitemap, search engine indexing, SEO tool">
+    <title>Sitemap Creator Tool - Generate XML Sitemap for SEO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: #2b3e50;
+            color: #fff;
+            padding: 15px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #1e2c3a;
+        }
+        header h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 10px 0 5px;
+        }
+        header p {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #2b3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: 500;
+            color: #333;
+        }
+        input[type="url"], input[type="number"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #sitemapResult {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        /* Benefits Section */
+        .benefits, .guide {
+            margin-top: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #2b3e50;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="backlink-posting-sites.html">Backlink Sites</a>
+            <a href="sitemap-creator.html" class="active">Sitemap Creator</a>
+            <a href="keyword-research.html">Keyword Reseach</a>
+            <a href="robotstxt-generator.html">Robots.txt Generator</a>
+        </nav>
+        <h1>Sitemap Creator Tool</h1>
+        <p>Generate an XML sitemap for your website to improve SEO and indexing.</p>
+    </header>
+
+    <div class="container">
+        <h2>Create Your XML Sitemap</h2>
+        <p>Enter your website URL and the number of pages you want to include in your sitemap.</p>
+
+        <form id="sitemapForm">
+            <label for="url">Website URL:</label>
+            <input type="url" id="url" name="url" placeholder="https://example.com" required>
+            
+            <label for="pageCount">Number of Pages:</label>
+            <input type="number" id="pageCount" name="pageCount" placeholder="10" min="1" required>
+            
+            <button type="button" onclick="generateSitemap()">Generate Sitemap</button>
+            <button type="button" id="downloadButton" style="display: none;" onclick="downloadSitemap()">Download Sitemap</button>
+        </form>
+
+        <div id="sitemapResult"></div>
+
+        <!-- Sitemap Guide and Benefits -->
+        <div class="guide">
+            <h3>Where to Upload Your Sitemap</h3>
+            <p>Once you've generated and downloaded your sitemap, upload it to the root directory of your website (e.g., <code>https://yourdomain.com/sitemap.xml</code>). Then, submit it to Google via <a href="https://search.google.com/search-console/sitemaps" target="_blank">Google Search Console</a> and to Bing via <a href="https://www.bing.com/webmasters" target="_blank">Bing Webmaster Tools</a> to help search engines discover and index your pages.</p>
+        </div>
+
+        <div class="benefits">
+            <h3>Benefits of a Sitemap</h3>
+            <ul>
+                <li>Improves website indexing by search engines, especially for new websites or updates.</li>
+                <li>Helps search engines discover all pages, including those that are not well-linked.</li>
+                <li>Provides metadata about each URL, helping search engines prioritize important pages.</li>
+                <li>Can improve visibility and organic search performance.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Peakwebmaster Tool. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        let sitemapXML = "";
+
+        function generateSitemap() {
+            const url = document.getElementById("url").value;
+            const pageCount = parseInt(document.getElementById("pageCount").value);
+            const sitemapResult = document.getElementById("sitemapResult");
+            const downloadButton = document.getElementById("downloadButton");
+
+            if (!url || pageCount < 1) {
+                sitemapResult.textContent = "Please enter a valid URL and page count.";
+                return;
+            }
+
+            sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+            
+            for (let i = 1; i <= pageCount; i++) {
+                sitemapXML += `  <url>\n    <loc>${url}/page${i}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+            }
+
+            sitemapXML += `</urlset>`;
+            sitemapResult.textContent = sitemapXML;
+            downloadButton.style.display = "block";
+        }
+
+        function downloadSitemap() {
+            const blob = new Blob([sitemapXML], { type: "application/xml" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "sitemap.xml";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate a custom robots.txt file with our easy-to-use Robots.txt Generator. Control which pages of your website are crawled and indexed by search engines.">
+    <meta name="keywords" content="robots.txt, SEO tool, robots.txt generator, website crawling, search engine indexing, prevent crawling, SEO optimization, robots.txt file">
+    <meta name="author" content="peakwebmaster">
+    <title>Robots.txt Generator - Optimize Your Website's Crawling & Indexing</title>
+
+    
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #2b3e50;
+            color: #fff;
+            padding: 15px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #1e2c3a;
+        }
+        header h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 10px 0 5px;
+        }
+        header p {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 2rem;
+            color: #2b3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .form-container {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .robots-txt-output {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Footer Styling (Copied from Sitemap Creator Tool) */
+        footer {
+            background-color: #2b3e50;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="backlink-posting-sites.html">Backlink Sites</a>
+            <a href="sitemap-creator.html">Sitemap Creator</a>
+            <a href="keyword-research.html">Keyword Reseach</a>
+            <a href="robotstxt-generator.html">Robots.txt Generator</a>
+        </nav>
+        <h1>Robots.txt Generator</h1>
+        <p>Generate your robots.txt file easily to optimize your website’s SEO.</p>
+    </header>
+
+    <div class="container">
+        <section class="form-container">
+            <h2>Configure Your Robots.txt</h2>
+            <form id="robotsTxtForm" onsubmit="generateRobotsTxt(event)">
+                <label for="userAgent">User-agent (e.g., Googlebot, * for all):</label>
+                <input type="text" id="userAgent" name="userAgent" value="*" required>
+
+                <label for="disallow">Disallow (e.g., /admin/, /private/):</label>
+                <input type="text" id="disallow" name="disallow" placeholder="Optional" />
+
+                <label for="allow">Allow (e.g., /public/):</label>
+                <input type="text" id="allow" name="allow" placeholder="Optional" />
+
+                <label for="sitemap">Sitemap URL:</label>
+                <input type="url" id="sitemap" name="sitemap" placeholder="Optional" />
+
+                <button type="submit">Generate Robots.txt</button>
+            </form>
+        </section>
+
+        <h3>Your Generated Robots.txt File:</h3>
+        <pre id="robotsTxtResult" class="robots-txt-output"></pre>
+        <button id="downloadBtn" style="display:none;" onclick="downloadRobotsTxt()">Download Robots.txt</button>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Peakwebmaster Tool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        function generateRobotsTxt(event) {
+            event.preventDefault();
+
+            const userAgent = document.getElementById('userAgent').value;
+            const disallow = document.getElementById('disallow').value;
+            const allow = document.getElementById('allow').value;
+            const sitemap = document.getElementById('sitemap').value;
+
+            let robotsTxt = `User-agent: ${userAgent}\n`;
+
+            if (disallow) {
+                robotsTxt += `Disallow: ${disallow}\n`;
+            }
+
+            if (allow) {
+                robotsTxt += `Allow: ${allow}\n`;
+            }
+
+            if (sitemap) {
+                robotsTxt += `Sitemap: ${sitemap}\n`;
+            }
+
+            document.getElementById('robotsTxtResult').textContent = robotsTxt;
+
+            // Show the download button
+            document.getElementById('downloadBtn').style.display = 'block';
+        }
+
+        function downloadRobotsTxt() {
+            const text = document.getElementById('robotsTxtResult').textContent;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'robots.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>

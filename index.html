@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PeakWebmaster is a powerful SEO and speed analyzer tool to help you optimize your website's performance, improve user experience, and increase search engine rankings.">
+    <meta name="keywords" content="SEO tool, speed analyzer, website optimization, performance analysis, improve SEO, website speed, user experience, SEO audit, PeakWebmaster">
+    <title>PeakWebmaster - Professional SEO & Speed Analyzer Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            overflow-x: hidden;
+            height: 100vh;
+            position: relative; /* Ensures the video stays behind the content */
+        }
+
+        /* Video Background */
+        video {
+            position: fixed; /* Makes the video fixed in place */
+            top: 0;
+            left: 0;
+            width: 100%; /* Covers the entire width */
+            height: 100%; /* Covers the entire height */
+            object-fit: cover; /* Ensures the video covers the screen without distortion */
+            z-index: -1; /* Sends the video to the background */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: rgba(43, 62, 80, 0.8); /* Slight transparency for better text visibility */
+            color: #fff;
+            padding: 15px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #1e2c3a;
+        }
+        header h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 10px 0 5px;
+        }
+        header p {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-container input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+        .form-container input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .form-container button {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 15px;
+        }
+        .form-container button:hover {
+            background-color: #2980b9;
+        }
+        .form-container button:active {
+            transform: scale(0.98);
+        }
+
+        /* New Section Styles */
+        .why-use-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            text-align: center;
+        }
+        .why-use-section h2 {
+            font-size: 2rem;
+            color: #2b3e50;
+            margin-bottom: 20px;
+        }
+        .why-use-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .why-use-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .why-use-section ul li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #2b3e50;
+        }
+
+        /* Loader */
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Results Section */
+        .results-container {
+            display: none;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .results-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2b3e50;
+        }
+        .results-container .result-item {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .error {
+            color: #e74c3c;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2b3e50;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Video Background -->
+    <video autoplay loop muted>
+        <source src="your_video_file.mp4" type="video/mp4">
+        <source src="https://videocdn.cdnpk.net/videos/662040c1-967c-43f1-8833-0dc4f364a428/horizontal/previews/clear/large.mp4?token=exp=1731090893~hmac=ee5cc175fb035dd218720dc6b770e49cad884a29f6c8c16a3b62f242c14a5db1" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="backlink-posting-sites.html">Backlink Sites</a>
+            <a href="sitemap-creator.html">Sitemap Creator</a>
+            <a href="keyword-research.html">Keyword Research</a>
+            <a href="robotstxt-generator.html">Robots.txt Generator</a>
+        </nav>
+        <h1>Professional SEO & Speed Analyzer</h1>
+        <p>Analyze your website's SEO performance and load speed for optimization</p>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://example.com)">
+            <button id="analyzeButton">Analyze Website</button>
+            <div class="loader" id="loader"></div>
+        </div>
+        <div class="error" id="error-section">There was an error fetching data. Please try again.</div>
+        <div class="results-container" id="results-section">
+            <h2>Analysis Results</h2>
+            <div id="results"></div>
+            <h3>Suggestions to Improve Speed</h3>
+            <ul>
+                <li>Optimize images for faster loading times.</li>
+                <li>Minify CSS, JavaScript, and HTML.</li>
+                <li>Enable server-side caching and compression.</li>
+                <li>Utilize a Content Delivery Network (CDN).</li>
+            </ul>
+        </div>
+
+        <!-- New Section: Why Use PeakWebmaster Tool -->
+        <div class="why-use-section">
+            <h2>Why Choose PeakWebmaster Tool?</h2>
+            <p>PeakWebmaster is the ultimate solution for optimizing your website's SEO and performance. Whether you're a beginner or an experienced webmaster, our tool makes it easy to enhance your website’s user experience and boost your search engine rankings. Here’s why PeakWebmaster is the perfect choice for your site:</p>
+            <ul>
+                <li><strong>Comprehensive SEO Insights:</strong> Gain in-depth SEO analysis and actionable insights to improve your website's visibility and search engine rankings.</li>
+                <li><strong>Speed Optimization Tips:</strong> Identify performance bottlenecks and receive expert recommendations to significantly reduce loading times and improve user retention.</li>
+                <li><strong>Real-Time Recommendations:</strong> Get instant, easy-to-understand suggestions for website improvements, tailored to your specific needs.</li>
+                <li><strong>Easy to Use:</strong> With a user-friendly interface, PeakWebmaster requires no technical expertise, making website optimization accessible to everyone.</li>
+                <li><strong>Free Access to Powerful Features:</strong> Enjoy all these benefits at no cost—making PeakWebmaster the most accessible SEO and speed analyzer on the market.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Peakwebmaster Tool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+        document.getElementById('analyzeButton').addEventListener('click', async function() {
+            const url = document.getElementById('urlInput').value.trim();
+            const apiKey = 'AIzaSyA_42C1s2zorlfePMDefUQqbgUGfMt8O_Q';
+
+            if (!url || !url.startsWith("http")) {
+                displayError('Please enter a valid URL (e.g., https://example.com).');
+                return;
+            }
+
+            const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&key=${apiKey}&category=performance`;
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('error-section').style.display = 'none';
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`Failed to fetch data: ${response.status}`);
+
+                const data = await response.json();
+                displayResults(data);
+                loader.style.display = 'none';
+            } catch (error) {
+                displayError('There was an error fetching data. Please try again.');
+                loader.style.display = 'none';
+            }
+        });
+
+        function displayResults(data) {
+            const performanceScore = data.lighthouseResult.categories.performance.score * 100;
+            const loadTime = data.lighthouseResult.audits['interactive'].displayValue;
+            const fcp = data.lighthouseResult.audits['first-contentful-paint'].displayValue;
+            const lcp = data.lighthouseResult.audits['largest-contentful-paint'].displayValue;
+            const cls = data.lighthouseResult.audits['cumulative-layout-shift'].displayValue;
+
+            document.getElementById('results').innerHTML = `
+                <div class="result-item"><strong>Performance Score:</strong> ${performanceScore}/100</div>
+                <div class="result-item"><strong>Page Load Time:</strong> ${loadTime}</div>
+                <div class="result-item"><strong>First Contentful Paint:</strong> ${fcp}</div>
+                <div class="result-item"><strong>Largest Contentful Paint:</strong> ${lcp}</div>
+                <div class="result-item"><strong>Cumulative Layout Shift:</strong> ${cls}</div>
+            `;
+            document.getElementById('results-section').style.display = 'block';
+        }
+
+        function displayError(message) {
+            document.getElementById('error-section').textContent = message;
+            document.getElementById('error-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

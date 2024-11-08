@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home Page -->
+    <url>
+        <loc>https://www.peakwebmaster.com/index.html</loc>
+        <lastmod>2024-11-08</lastmod>
+        <priority>1.00</priority>
+    </url>
+
+    <!-- Backlink Posting Sites Page -->
+    <url>
+        <loc>https://www.peakwebmaster.com/backlink-posting-sites.html</loc>
+        <lastmod>2024-11-08</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Sitemap Creator Page -->
+    <url>
+        <loc>https://www.peakwebmaster.com/sitemap-creator.html</loc>
+        <lastmod>2024-11-08</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Keyword Research Page -->
+    <url>
+        <loc>https://www.peakwebmaster.com/keyword-research.html</loc>
+        <lastmod>2024-11-08</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Robots.txt Generator Page -->
+    <url>
+        <loc>https://www.peakwebmaster.com/robotstxt-generator.html</loc>
+        <lastmod>2024-11-08</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+</urlset>
